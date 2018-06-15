@@ -1,0 +1,1 @@
+sudo singularity build busco_3.0.2.img Singularity

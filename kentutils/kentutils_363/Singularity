@@ -1,0 +1,19 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+kentutils 363
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/userApps/bin:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git rsync build-essential apache2 mysql-client-5.7 mysql-client-core-5.7 libpng-dev libssl-dev openssl libuuid1 uuid-dev libmysqlclient-dev -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src 
+  cd /usr/local/src && wget http://hgdownload.soe.ucsc.edu/admin/exe/userApps.v363.src.tgz -O kentutils.tar.gz && tar xf kentutils.tar.gz && rm kentutils.tar.gz && cd userApps && make -j 8 
+  mkdir /scratch

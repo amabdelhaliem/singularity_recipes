@@ -1,0 +1,18 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+qiime 1.9.1
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential unzip python-dev python-pip python-tk -y && rm -rf /var/lib/apt/lists/*
+  pip install numpy 
+  pip install qiime
+  mkdir /scratch

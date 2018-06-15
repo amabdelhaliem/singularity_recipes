@@ -1,0 +1,19 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+sratoolkit 2.9.0
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/sratoolkit.2.9.0-ubuntu64/bin:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.0/sratoolkit.2.9.0-ubuntu64.tar.gz -O sra.tar.gz && tar xf sra.tar.gz && rm sra.tar.gz
+  mkdir /scratch

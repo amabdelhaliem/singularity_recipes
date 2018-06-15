@@ -1,0 +1,19 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+minimap 2.10
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/minimap2-2.10_x64-linux:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential unzip -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget https://github.com/lh3/minimap2/releases/download/v2.10/minimap2-2.10_x64-linux.tar.bz2 && tar -xvf minimap2-2.10_x64-linux.tar.bz2 && rm minimap2-2.10_x64-linux.tar.bz2
+  mkdir /scratch

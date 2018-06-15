@@ -1,0 +1,1 @@
+sudo singularity build gmap_2018_03_25.img Singularity

@@ -1,0 +1,19 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+gawk 4.2.1
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/gawk-4.2.1:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential unzip -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget http://ftp.gnu.org/gnu/gawk/gawk-4.2.1.tar.xz -O gawk.tar.gz && tar xf gawk.tar.gz && rm gawk.tar.gz && cd gawk-4.2.1 && ./configure && make -j 8
+  mkdir /scratch

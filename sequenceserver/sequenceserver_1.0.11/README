@@ -1,0 +1,1 @@
+sudo singularity build sequenceserver_1.0.11.img Singularity

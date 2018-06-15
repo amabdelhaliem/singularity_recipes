@@ -1,0 +1,19 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+mash 2.0
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/mash-Linux64-v2.0:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential unzip -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget https://github.com/marbl/Mash/releases/download/v2.0/mash-Linux64-v2.0.tar -O mash.tar && tar xf mash.tar && rm mash.tar
+  mkdir /scratch

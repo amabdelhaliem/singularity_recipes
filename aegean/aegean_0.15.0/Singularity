@@ -1,0 +1,19 @@
+From: ubuntu:12.04
+Bootstrap: docker
+
+%help
+aegean 0.15.0
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential unzip libcairo2-dev libpango1.0-dev -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget http://genometools.org/pub/genometools-1.5.8.tar.gz -O gt.tar.gz && tar --remove-files -xf gt.tar.gz && cd genometools-1.5.8 && make && make install && sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/genometools-x86_64.conf' && ldconfig
+  cd /usr/local/src && wget https://github.com/standage/AEGeAn/archive/v0.15.0.tar.gz -O aeg.tar.gz && tar --remove-files -xf aeg.tar.gz && cd AEGeAn-0.15.0 && make test && make install && ldconfig
+  mkdir -p /scratch

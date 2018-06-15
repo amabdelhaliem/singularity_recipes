@@ -1,0 +1,20 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+gmap 2018_03_25
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/gmap-2018-03-25/src:$PATH
+  PATH=/usr/local/src/gmap-2018-03-25/util:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget http://research-pub.gene.com/gmap/src/gmap-gsnap-2018-03-25.tar.gz -O gmap.tar.gz && tar xf gmap.tar.gz && rm gmap.tar.gz && cd gmap-2018-03-25 && ./configure && make -j 8
+  mkdir /scratch

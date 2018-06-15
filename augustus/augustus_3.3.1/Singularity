@@ -1,0 +1,31 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+augustus 3.3
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/augustus-3.3.1/bin:$PATH
+  PATH=/usr/local/src/augustus-3.3.1/scripts:$PATH
+  AUGUSTUS_CONFIG_PATH=/usr/local/src/augustus-3.3.1/config/
+  export AUGUSTUS_CONFIG_PATH
+  export LC_ALL=C
+  export TOOLDIR=/usr/local/src
+
+%post
+  apt-get update && apt-get dist-upgrade -y
+  apt-get install wget git build-essential unzip autoconf libbz2-dev libncurses5-dev liblzma-dev libncurses5 libboost-iostreams-dev zlib1g-dev libgsl-dev libboost-graph-dev libsuitesparse-dev liblpsolve55-dev bamtools libbam-dev libbamtools-dev libboost-all-dev -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && git clone https://github.com/samtools/htslib.git && cd htslib && autoheader && autoconf && ./configure && make -j 8 && make install
+  cd /usr/local/src && git clone https://github.com/samtools/bcftools.git && cd bcftools && autoheader && autoconf && ./configure && make && make install
+  cd /usr/local/src && git clone https://github.com/samtools/tabix.git && cd tabix && make
+  cd /usr/local/src && git clone https://github.com/samtools/samtools.git && cd samtools && autoheader && autoconf -Wno-syntax && ./configure && make && make install
+  export TOOLDIR=/usr/local/src
+  cd /usr/local/src && wget http://bioinf.uni-greifswald.de/augustus/binaries/augustus-3.3.1.tar.gz -O augustus.tar.gz && tar xf augustus.tar.gz && rm augustus.tar.gz && cd augustus-3.3.1 && make -j 8 && make -j 8 install
+  mkdir -p /scratch
+
+  

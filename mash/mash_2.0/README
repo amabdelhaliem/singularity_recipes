@@ -1,0 +1,1 @@
+sudo singularity build mash_2.0.img Singularity

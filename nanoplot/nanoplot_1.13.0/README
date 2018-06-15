@@ -1,0 +1,1 @@
+sudo singularity build nanoplot_1.13.0.img Singularity

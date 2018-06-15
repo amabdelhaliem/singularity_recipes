@@ -1,0 +1,16 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+sequenceserver 1.0.11.beta3
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get install -y build-essential ruby ruby-dev ncbi-blast+ && gem install sequenceserver
+  mkdir /scratch

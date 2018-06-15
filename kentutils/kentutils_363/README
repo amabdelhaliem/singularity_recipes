@@ -1,0 +1,1 @@
+sudo singularity build kentutils_363.img Singularity

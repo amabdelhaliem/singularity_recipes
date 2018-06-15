@@ -1,0 +1,20 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+transdecoder 5.3.0
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/TransDecoder-TransDecoder-v5.3.0:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install cpanminus wget git build-essential -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cpanm URI::Escape
+  cd /usr/local/src && wget https://github.com/TransDecoder/TransDecoder/archive/TransDecoder-v5.3.0.tar.gz -O tdec.tar.gz && tar xf tdec.tar.gz && rm tdec.tar.gz
+  mkdir -p /scratch

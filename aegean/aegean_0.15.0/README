@@ -1,0 +1,1 @@
+sudo singularity build aegean_0.15.0.img Singularity

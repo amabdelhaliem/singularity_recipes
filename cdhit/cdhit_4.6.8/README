@@ -1,0 +1,1 @@
+sudo singularity build cdhit_4.6.8.img Singularity

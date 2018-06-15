@@ -1,0 +1,19 @@
+From: ubuntu:artful
+Bootstrap: docker
+
+%help
+xlsx2csv 0.7.3
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/xlsx2csv-0.7.3:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget build-essential python -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget https://github.com/dilshod/xlsx2csv/archive/0.7.3.tar.gz -O xlsx2csv.tar.gz && tar xf xlsx2csv.tar.gz && rm xlsx2csv.tar.gz && cd xlsx2csv-0.7.3 && python setup.py install --user
+  mkdir /scratch

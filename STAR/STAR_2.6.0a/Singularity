@@ -1,0 +1,20 @@
+From: ubuntu:artful
+
+Bootstrap: docker
+
+%help
+STAR 2.6.0a
+
+%labels
+  Maintainer Andrei Rozanski
+  Version v1.0
+
+%environment
+  PATH=/usr/local/src/STAR-2.6.0a/bin/Linux_x86_64:$PATH
+  export LC_ALL=C
+
+%post
+  apt-get update && apt-get dist-upgrade -y && apt-get install wget git build-essential -y && rm -rf /var/lib/apt/lists/*
+  mkdir -p /usr/local/src
+  cd /usr/local/src && wget https://github.com/alexdobin/STAR/archive/2.6.0a.tar.gz -O star.tar.gz && tar xf star.tar.gz && rm star.tar.gz
+  mkdir /scratch
