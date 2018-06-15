@@ -2,7 +2,7 @@ From: ubuntu:artful
 Bootstrap: docker
 
 %help
-augustus 3.3
+augustus 3.3.1
 
 %labels
   Maintainer Andrei Rozanski
