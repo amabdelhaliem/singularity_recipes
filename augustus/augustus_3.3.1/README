@@ -1,1 +1,0 @@
-sudo singularity build --writable augustus_3.3.img Singularity

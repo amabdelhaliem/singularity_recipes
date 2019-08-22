@@ -1,0 +1,11 @@
+# Singularity -  trinityrnaseq
+
+BootStrap: docker
+From: trinityrnaseq/trinityrnaseq
+
+%runscript
+    exec /usr/local/bin/trinityrnaseq/Trinity "$@"
+
+%labels
+
+AUTHOR hkmoon and andreirozanski

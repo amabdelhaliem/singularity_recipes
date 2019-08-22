@@ -1,1 +1,0 @@
-sudo singularity build xlsx2csv_0.7.3.img Singularity

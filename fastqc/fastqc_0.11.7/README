@@ -1,1 +1,0 @@
-sudo singularity build fastqc_0.11.7.img Singularity

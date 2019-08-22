@@ -1,1 +1,0 @@
-sudo singularity build trimgalore_0.4.5.img Singularity

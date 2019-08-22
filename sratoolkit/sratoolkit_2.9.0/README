@@ -1,1 +1,0 @@
-sudo singularity build sratoolkit_2.9.0.img Singularity
