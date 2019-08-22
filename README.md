@@ -25,3 +25,4 @@
 | trimgalore     | [0.4.5](https://github.com/FelixKrueger/TrimGalore/archive/0.4.5.zip)                                                | [Singularity](trimgalore/trimgalore_0.4.5/Singularity)          |
 | trinity        | [2.6.6](https://github.com/trinityrnaseq/trinityrnaseq/archive/Trinity-v2.6.6.tar.gz)                                | [Singularity](trinity/trinity_2.6.6/Singularity)                |
 | xlsx2csv       | [0.7.3](https://github.com/dilshod/xlsx2csv/archive/0.7.3.tar.gz)                                                    | [Singularity](xlsx2csv/xlsx2csv_0.7.3/Singularity)              |
+ 
